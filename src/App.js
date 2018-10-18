@@ -4,12 +4,15 @@ import NumberContainer from './NumberContainer'
 import Header from './Header'
 
 const AppContainer = styled.div`
-  height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template-areas: ". . . " ". header ." " . numbers . ";
-  grid-template-rows: 50px 1fr 6fr;
-  grid-columns-rows: 200px 1fr 200px;
+  grid-template-areas: 
+    ". . . " 
+    ". header ." 
+    ". . ."
+    " . numbers . ";
+  grid-template-rows: 50px 20px 1fr 6fr;
+  grid-template-columns: 1fr 2fr 1fr;
 `
 
 class App extends Component {

@@ -3,7 +3,11 @@ import styled from 'styled-components'
 
 const NumberDiv = styled.div`
  background-color: #F280A1;
- text-align: center;
+ font-size: 4em;
+ font-weight: bold;
+ display: flex;
+ align-items: center;
+ justify-content: center;
 `
 const WaitingNumber = ({number}) => <NumberDiv>{number}</NumberDiv>
 
