@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-scripts": "2.0.5"
+    "react-scripts": "2.0.5",
+    "stylelint": "^9.6.0"
   },
   "dependencies": {
     "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "react-dom": "^16.5.2",
+    "styled-components": "^4.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
