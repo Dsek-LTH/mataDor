@@ -1,2 +1,2 @@
-# mataDor
-Vi testar git!
+## mataDor
+TL:DR; like facebook but for fast-food
