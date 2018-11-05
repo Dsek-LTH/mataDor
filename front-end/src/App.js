@@ -26,7 +26,7 @@ class App extends Component {
 
     eventSource.onmessage = e => {
         console.log(e)
-        this.setState({numbers: this.state.numbers.concat([e])})
+        this.setState({numbers: this.state.numbers.concat([e.data])})
     };
 
     eventSource.addEventListener('eventType', e => {});
