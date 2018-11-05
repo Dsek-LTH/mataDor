@@ -1,33 +1,16 @@
 {
-  "name": "mataDor",
-  "version": "0.1.0",
-  "private": true,
-  "devDependencies": {
-    "react-scripts": "2.0.5",
-    "styled-components": "^4.0.2",
-    "stylelint": "^9.6.0",
-    "stylelint-config-standard": "^18.2.0"
-  },
-  "dependencies": {
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2"
-  },
+  "name": "matador-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "stylelint": {
-    "extends": "stylelint-config-standard"
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.4"
   }
 }
