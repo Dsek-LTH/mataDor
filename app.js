@@ -1,9 +1,8 @@
-const cors = require('cors');
 const express = require('express');
+const path = require('path');
 const app = express();
-app.use(cors());
 
-app.get('/', (req, res) => {
+app.get('/sse', (req, res) => {
   res.writeHead(200, {
     Connection: 'keep-alive',
     'Content-Type': 'text/event-stream',
@@ -12,12 +11,15 @@ app.get('/', (req, res) => {
 
   let id = 1;
 
+
   // Send event every 3 seconds or so forever...
   setInterval(() => {
-    res.write(`event: myEvent\nid: ${id}\ndata:This is event ${id}.`);
+    res.write(`data: myEvent\nid: ${id}`);
     res.write('\n\n');
     id++;
   }, 3000);
 });
 
-app.listen(5000);
+app.use(express.static(path.join(__dirname, 'front-end/build')));
+
+app.listen(3000);

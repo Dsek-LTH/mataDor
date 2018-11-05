@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const eventSource = new EventSource('http://localhost:5000/');
+    const eventSource = new EventSource('http://localhost:3000/sse');
 
     eventSource.onmessage = e => {
         console.log(e)
