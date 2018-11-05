@@ -25,8 +25,11 @@ class App extends Component {
     const eventSource = new EventSource('http://localhost:3000/subscribe');
 
     eventSource.onmessage = e => {
-        console.log(e)
-        this.setState({numbers: this.state.numbers.concat([e.data])})
+      const data = JSON.parse(e.data);
+      console.log(data);
+      if (data) {
+        this.setState({numbers: data});
+      }
     };
 
     eventSource.addEventListener('eventType', e => {});
