@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import NumberContainer from './NumberContainer';
 import Header from './Header';
@@ -15,34 +15,11 @@ const AppContainer = styled.div`
   grid-template-columns: 1fr 2fr 1fr;
 `;
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {numbers: []};
-  }
-
-  componentDidMount() {
-    const eventSource = new EventSource('http://localhost:3000/subscribe');
-
-    eventSource.onmessage = e => {
-      const data = JSON.parse(e.data);
-      console.log(data);
-      if (data) {
-        this.setState({numbers: data});
-      }
-    };
-
-    eventSource.addEventListener('eventType', e => {});
-  }
-
-  render() {
-    return (
-      <AppContainer>
-        <Header />
-        <NumberContainer numberList={this.state.numbers} />
-      </AppContainer>
-    );
-  }
-}
+const App = () => (
+  <AppContainer>
+    <Header />
+    <NumberContainer />
+  </AppContainer>
+);
 
 export default App;
