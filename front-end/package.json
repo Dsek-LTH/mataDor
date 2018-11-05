@@ -1,0 +1,42 @@
+{
+  "name": "mataDor",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "react-scripts": "2.0.5",
+    "styled-components": "^4.0.2",
+    "stylelint": "^9.6.0",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.5.0"
+  },
+  "dependencies": {
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint:css": "stylelint './src/**/*.js'"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "stylelint": {
+    "processors": [
+      "stylelint-processor-styled-components"
+    ],
+    "extends": [
+      "stylelint-config-recommended",
+      "stylelint-config-styled-components"
+    ]
+  }
+}
