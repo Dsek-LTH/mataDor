@@ -18,11 +18,11 @@ const AppContainer = styled.div`
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {numbers: [102, 210, 123, 342]};
+    this.state = {numbers: []};
   }
 
   componentDidMount() {
-    const eventSource = new EventSource('http://localhost:3000/sse');
+    const eventSource = new EventSource('http://localhost:3000/subscribe');
 
     eventSource.onmessage = e => {
         console.log(e)

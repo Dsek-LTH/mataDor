@@ -1,25 +1,34 @@
 const express = require('express');
+const EventEmitter = require('events');
 const path = require('path');
 const app = express();
 
-const currentFood = [321, 23,4234,2,3434]
-const should
-app.get('/sse', (req, res) => {
+const Stream = new EventEmitter();
+const currentFood = [];
+//save somehow?
+// always sent whole list
+
+app.get('/subscribe', (req, res) => {
   res.writeHead(200, {
     Connection: 'keep-alive',
     'Content-Type': 'text/event-stream',
     'Cache-Control': 'no-cache',
   });
 
-  let id = 0;
+  Stream.on('push', function(event, data) {
+    res.write(`data: ${data} \n\n`);
+  });
+});
 
-  // Send event every 3 seconds or so forever...
-  setInterval(() => {
-      if(
-    res.write(`data: ${currentFood[id%currentFood.length]}\nid: ${id}`);
-    res.write('\n\n');
-    id++;
-  }, 3000);
+app.get('/new/:id', (req, res) => {
+  const id = req.params.id;
+  if (id.length < 9 && !isNaN(id)) {
+    Stream.emit('push', 'newfood', req.params.id);
+    return res.json({message: 'food added'});
+  }
+  res.status(400).json({
+    message: `FoodId must be 1-8 digit integer`,
+  });
 });
 
 app.use(express.static(path.join(__dirname, 'front-end/build')));
