@@ -1,25 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
-import NumberContainer from './NumberContainer';
-import Header from './Header';
-import AdminView from './AdminView';
-
-const AppContainer = styled.div`
-  width: 100vw;
-  display: grid;
-  grid-template-areas:
-    '. . . '
-    '. header .'
-    '. . .'
-    ' . numbers . ';
-  grid-template-rows: 50px 20px 1fr 6fr;
-  grid-template-columns: 1fr 2fr 1fr;
-`;
+import {Switch, Route} from 'react-router';
+import {BrowserRouter} from 'react-router-dom';
+import AdminRoute from './AdminRoute';
+import HomeRoute from './HomeRoute';
 
 const App = () => (
-  <AppContainer>
-    <AdminView />
-    <NumberContainer />
-  </AppContainer>
+  <BrowserRouter>
+    <Switch>
+      <Route exact path="/" component={HomeRoute} />
+      <Route path="/admin" component={AdminRoute} />
+      <Route component={() => <div>404</div>} />
+    </Switch>
+  </BrowserRouter>
 );
 export default App;

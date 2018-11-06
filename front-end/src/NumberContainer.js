@@ -32,7 +32,7 @@ class NumberContainer extends React.Component {
     return (
       <StyledContainer>
         {this.state.numberList.map(num => (
-          <WaitingNumber key={num} number={num} />
+          <WaitingNumber key={num} isAdmin={this.props.isAdmin} number={num} />
         ))}
       </StyledContainer>
     );

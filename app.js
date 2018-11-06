@@ -45,6 +45,9 @@ app.post('/clear', (req, res) => {
 
 // Not doing real hosting to avoid CORS for now
 app.use(express.static(path.join(__dirname, 'front-end/build')));
+// this makes react router handle 404s
+app.get('*', (req,res) => res.sendFile(path.join(__dirname+'/front-end/build/index.html')))
+
 app.listen(3000, () => console.log("\nApp started at http://localhost:3000/"));
 
 //Helpers that should be in another file

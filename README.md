@@ -6,4 +6,4 @@ Ett litet system för att hålla reda på när man kan hämta sin mat! Tanken ä
 - clone the repository.
 - run `yarn setup`.
 - open http://localhost:3000/ in your favorite browser.
-
+- adding numbers is avaiable at /admin

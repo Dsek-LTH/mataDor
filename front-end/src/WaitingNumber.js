@@ -11,8 +11,8 @@ const NumberDiv = styled.div`
   justify-content: center;
 `;
 
-const WaitingNumber = ({number}) => (
-  <NumberDiv onClick={() => addOrRemove(number)}>{number}</NumberDiv>
+const WaitingNumber = ({number, isAdmin}) => (
+  <NumberDiv onClick={() => isAdmin && addOrRemove(number)}>{number}</NumberDiv>
 );
 
 export default WaitingNumber;
