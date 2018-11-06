@@ -24,6 +24,7 @@ class NumberContainer extends React.Component {
       data && this.setState({numberList: data});
     };
 
+    //TODO kolla detta
     eventSource.addEventListener('eventType', e => {});
   }
 

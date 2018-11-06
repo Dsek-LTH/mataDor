@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import NumberContainer from './NumberContainer';
 import Header from './Header';
+import AdminView from './AdminView';
 
 const AppContainer = styled.div`
   width: 100vw;
@@ -17,9 +18,8 @@ const AppContainer = styled.div`
 
 const App = () => (
   <AppContainer>
-    <Header />
+    <AdminView />
     <NumberContainer />
   </AppContainer>
 );
-
 export default App;

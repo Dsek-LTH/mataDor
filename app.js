@@ -1,8 +1,12 @@
 const express = require('express');
 const EventEmitter = require('events');
+const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 const Stream = new EventEmitter();
+
+// Setup
+app.use(bodyParser.json());
 
 // We don't use a real database, because we don't care if the server crashes, and we don't want to store any information more than 1 pub.
 let currentFood = [];
@@ -23,8 +27,8 @@ app.get('/subscribe', (req, res) => {
   sendList();
 });
 
-app.get('/addOrRemove/:id', (req, res) => {
-  const id = req.params.id;
+app.post('/addOrRemove', (req, res) => {
+  const id = req.body.id.toString(); // we need this to check length
   if (id.length < 9 && !isNaN(id)) {
     const operation = addOrRemoveFood(id);
     return res.json({message: `food was ${operation}`});
@@ -34,7 +38,7 @@ app.get('/addOrRemove/:id', (req, res) => {
   });
 });
 
-app.get('/clear', (req, res) => {
+app.post('/clear', (req, res) => {
   clearList();
   res.json({message: 'foodlist was cleared'});
 });
