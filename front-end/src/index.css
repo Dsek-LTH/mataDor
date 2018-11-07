@@ -15,8 +15,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: black;
-  color: white;
+  background-color: #f9eae1;
+  color: #424b54;
 }
 
 code {
@@ -28,3 +28,4 @@ code {
     "Courier New",
     monospace;
 }
+
