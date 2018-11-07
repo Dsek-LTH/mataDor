@@ -25,8 +25,9 @@ export const ColoredButton = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${props => props.color};
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
 `
 
 export const FocusInput = styled.input`
