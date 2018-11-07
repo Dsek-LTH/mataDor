@@ -5,6 +5,7 @@ import AdminRoute from './Routes/AdminRoute';
 import HomeRoute from './Routes/HomeRoute';
 
 const App = () => (
+  //TODO Give homeroute and adminRoute numbers via props
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={HomeRoute} />

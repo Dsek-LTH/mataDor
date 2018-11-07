@@ -3,27 +3,10 @@ import WaitingNumber from './WaitingNumber'
 import { NumberListContainer } from './numberListStyle'
 
 class NumberContainer extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {numberList: []}
-  }
-
-  componentDidMount () {
-    const eventSource = new EventSource('http://localhost:3000/subscribe')
-
-    eventSource.onmessage = e => {
-      const data = JSON.parse(e.data)
-      data && this.setState({numberList: data})
-    }
-
-    //TODO kolla detta
-    eventSource.addEventListener('eventType', e => {})
-  }
-
   render () {
     return (
       <NumberListContainer isMobile={true}>
-        {this.state.numberList.map(num => (
+        {this.props.numbers.map(num => (
           <WaitingNumber key={num} isAdmin={this.props.isAdmin} number={num}/>
         ))}
       </NumberListContainer>

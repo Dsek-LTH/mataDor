@@ -2,11 +2,12 @@ import React from 'react'
 import NumberContainer from '../Numbers/NumberContainer'
 import AdminView from '../AdminBar/AdminView'
 import { AppContainer } from '../utils/styles'
+import NotifyMe from '../utils/NotifyMe'
 
-const AdminRoute = () => (
+const AdminRoute = ({numbers}) => (
   <AppContainer>
-    <AdminView/>
-    <NumberContainer isAdmin={true}/>
+    <AdminView numbers={numbers}/>
+    <NumberContainer numbers={numbers} isAdmin={true}/>
   </AppContainer>
 )
 
