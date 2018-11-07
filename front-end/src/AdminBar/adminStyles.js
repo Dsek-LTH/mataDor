@@ -29,6 +29,7 @@ export const ColoredButton = styled.button`
   width: 100%;
   cursor: pointer;
   border: 0;
+  padding: 0.5em 0.75em;
 `
 
 export const FocusInput = styled.input`
