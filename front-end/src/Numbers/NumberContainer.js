@@ -22,7 +22,7 @@ class NumberContainer extends React.Component {
 
   render () {
     return (
-      <NumberListContainer isMobile={true}>
+      <NumberListContainer>
         {this.state.numberList.map(num => (
           <WaitingNumber key={num} isAdmin={this.props.isAdmin} number={num}/>
         ))}
