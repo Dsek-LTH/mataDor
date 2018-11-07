@@ -1,11 +1,14 @@
 import React from 'react';
 import Header from '../utils/Header';
 import NumberContainer from '../Numbers/NumberContainer';
-import {AppContainer} from '../utils/styles';
+import NumberListFetcher from '../Numbers/NumberListFetcher';
+import { AppContainer } from '../utils/styles';
 
 export default () => (
   <AppContainer>
-    <Header />
-    <NumberContainer isAdmin={false} />
+    <NumberListFetcher render={({ numberList }) => [
+      <Header key="header" />,
+      <NumberContainer numberList={numberList} isAdmin={false} key="numbers" />,
+    ]} />
   </AppContainer>
 );
