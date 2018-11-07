@@ -17,7 +17,7 @@ export const AppContainer = styled.div`
     grid-template-rows: 30px 90px 30px 1fr;
     grid-template-columns: 50px 1fr 50px;
   }
-av`
+`
 
 export const StyledHeader = styled.div`
   grid-area: header;
