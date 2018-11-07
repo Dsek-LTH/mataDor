@@ -9,6 +9,7 @@ class AdminView extends React.Component {
     this.state = {typed: ''}
   }
 
+  //Implemented this way to always accept input!
   handleKeyDown = event => {
     const keyCode = event.keyCode
     switch (keyCode) {
@@ -28,13 +29,21 @@ class AdminView extends React.Component {
     }
   }
 
-  sendNumber () {
-    if (this.state.typed.length > 0) {
-      addOrRemove(this.state.typed)
+  sendNumber = () => {
+    this.sendNumberWithParam(this.state.typed)
+  }
+
+  sendNumberWithParam = (num) => {
+    if (num.length > 0) {
+      addOrRemove(num)
       this.setState({
         typed: '',
       })
     }
+  }
+
+  undo = () => {
+    //Not yet implemented use redux
   }
 
   handleIfNumber (keyCode) {
@@ -60,8 +69,8 @@ class AdminView extends React.Component {
       <AdminPanel>
         <ColoredButton color="#dbafc1" area="clear" onClick={clear}>rensa</ColoredButton>
         <FocusInput value={this.state.typed} type="number"/>
-        <ColoredButton color="#b4d2ba" area="undo">undo</ColoredButton>
-        <ColoredButton color="#8ed081" area="send">send</ColoredButton>
+        <ColoredButton color="#b4d2ba" area="undo" onClick={this.undo}>:)</ColoredButton>
+        <ColoredButton color="#8ed081" area="send" onClick={this.sendNumber}>send</ColoredButton>
       </AdminPanel>
     )
   }
