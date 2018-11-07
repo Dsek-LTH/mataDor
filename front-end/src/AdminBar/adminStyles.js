@@ -7,18 +7,18 @@ export const AdminPanel = styled.div`
   @media (max-width: 700px) {
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: 
-     "clear undo send" 
+    grid-template-areas:
+     "clear undo send"
      "currentInput currentInput currentInput";
   }
-  
+
   @media (min-width: 700px) {
     grid-template-columns 1fr 6fr 1fr 1fr;
     grid-template-areas: "clear currentInput send undo";
   }
 `
 
-export const ColoredButton = styled.div`
+export const ColoredButton = styled.button`
   grid-area: ${props => props.area}
   font-size: 2em;
   display: inline-flex;
@@ -28,6 +28,7 @@ export const ColoredButton = styled.div`
   height: 100%;
   width: 100%;
   cursor: pointer;
+  border: 0;
 `
 
 export const FocusInput = styled.input`
