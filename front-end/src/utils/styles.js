@@ -15,6 +15,8 @@ export const StyledHeader = styled.div`
   text-decoration: underline;
   font-size: 3em;
   align-self: center;
+  padding: 0.5em;
+  text-align: center;
 
   @media (max-width: 700px) {
     font-size: 1.7em;
