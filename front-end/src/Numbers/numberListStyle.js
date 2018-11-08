@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const NumberDiv = styled.div`
   background-color: #f280a1;

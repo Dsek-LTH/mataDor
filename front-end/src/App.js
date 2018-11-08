@@ -1,7 +1,7 @@
-import React from 'react';
-import { Switch, Route } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
-import { AdminRoute, NotifyRoute, HomeRoute } from './Routes/index';
+import React from "react";
+import { Switch, Route } from "react-router";
+import { BrowserRouter } from "react-router-dom";
+import { AdminRoute, NotifyRoute, HomeRoute } from "./Routes/index";
 
 const App = () => (
   <BrowserRouter>

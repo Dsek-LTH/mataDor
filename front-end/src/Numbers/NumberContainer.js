@@ -1,6 +1,6 @@
-import React from 'react';
-import WaitingNumber from './WaitingNumber';
-import { NumberListContainer } from './numberListStyle';
+import React from "react";
+import WaitingNumber from "./WaitingNumber";
+import { NumberListContainer } from "./numberListStyle";
 
 const NumberContainer = ({ isAdmin, numberList }) => (
   <NumberListContainer>

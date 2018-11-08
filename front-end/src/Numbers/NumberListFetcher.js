@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 
 class NumberListFetcher extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      numberList: [],
+      numberList: []
     };
   }
 
   componentDidMount() {
-    const eventSource = new EventSource('http://localhost:3000/subscribe');
+    const eventSource = new EventSource("http://localhost:3000/subscribe");
 
-    eventSource.onmessage = (e) => {
+    eventSource.onmessage = e => {
       const numberList = JSON.parse(e.data);
       if (numberList) this.setState({ numberList });
     };

@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const AppContainer = styled.div`
   width: 100vw;
   display: grid;
-  grid-template-areas: 'header' '.' 'numbers';
+  grid-template-areas: "header" "." "numbers";
   grid-template-rows: 90px 15px 1fr;
   grid-template-columns: 1fr;
 `;

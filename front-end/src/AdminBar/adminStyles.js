@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const AdminPanel = styled.div`
   grid-area: header;
@@ -15,7 +15,7 @@ export const AdminPanel = styled.div`
      "clear undo send"
      "currentInput currentInput currentInput";
     width: 100%; 
-    padding: 0%;
+    padding: 0;
   }
 `;
 
