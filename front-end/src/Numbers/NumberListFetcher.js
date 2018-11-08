@@ -15,9 +15,6 @@ class NumberListFetcher extends React.Component {
       const numberList = JSON.parse(e.data)
       if (numberList) this.setState({ numberList })
     }
-
-    //TODO kolla detta
-    eventSource.addEventListener('eventType', e => {})
   }
 
   render () {
