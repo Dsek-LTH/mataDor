@@ -1,13 +1,15 @@
 import React from 'react'
 import NumberContainer from '../Numbers/NumberContainer'
+import NumberListFetcher from '../Numbers/NumberListFetcher'
 import AdminView from '../AdminBar/AdminView'
 import { AppContainer } from '../utils/styles'
-import NotifyMe from '../utils/NotifyMe'
 
-const AdminRoute = ({numbers}) => (
+const AdminRoute = ({numberList}) => (
   <AppContainer>
-    <AdminView numbers={numbers}/>
-    <NumberContainer numbers={numbers} isAdmin={true}/>
+    <NumberListFetcher render={({numberList}) => ([
+      <AdminView numberList={numberList} key="admin-view"/>,
+      <NumberContainer numberList={numberList} isAdmin={true} key="numbers"/>,
+    ])}/>
   </AppContainer>
 )
 
