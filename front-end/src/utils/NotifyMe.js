@@ -14,9 +14,9 @@ class NotifyMe extends React.Component {
 
   notifyMe = () => {
     const {input, acceptsNotis, sentNotis} = this.state
-    const {numbers} = this.props
+    const {numberList} = this.props
 
-    if (numbers.includes(input) && acceptsNotis && !sentNotis) {
+    if (numberList.includes(input) && acceptsNotis && !sentNotis) {
       new Notification('Din mat är klar!')
       this.setState({sentNotis: true})
     }
@@ -46,7 +46,7 @@ class NotifyMe extends React.Component {
       waitingFor ? <NotifyContainer>väntar på {waitingFor}</NotifyContainer> : (<NotifyContainer>
         <input value={input} onChange={this.handleChange} type="number" placeholder="ditt nummer"/>
         <ColoredButton color="#b4d2ba" onClick={this.registerForNotifications}>notifiera mig!</ColoredButton>
-        <ColoredButton color="#8ed081" onClick={this.hide}>inga notiser för mig, tack</ColoredButton>
+        <ColoredButton color="#8ed081" onClick={this.hide}>inga notiser, tack</ColoredButton>
       </NotifyContainer>)
     )
   }
