@@ -3,7 +3,8 @@ import styled from 'styled-components'
 export const AdminPanel = styled.div`
   grid-area: header;
   display: grid;
-  width: 100%;
+  width: 96%; 
+  padding: 2%;
   grid-template-columns 1fr 6fr 1fr 1fr;
   grid-template-areas: "clear currentInput send undo";
   
@@ -13,6 +14,8 @@ export const AdminPanel = styled.div`
     grid-template-areas:
      "clear undo send"
      "currentInput currentInput currentInput";
+    width: 100%; 
+    padding: 0%;
   }
 `
 
