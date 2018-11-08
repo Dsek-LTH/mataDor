@@ -4,7 +4,7 @@ class NumberListFetcher extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      numberList: [],
+      numberList: []
     }
   }
 
@@ -13,7 +13,7 @@ class NumberListFetcher extends React.Component {
 
     eventSource.onmessage = e => {
       const numberList = JSON.parse(e.data)
-      if (numberList) this.setState({numberList})
+      if (numberList) this.setState({ numberList })
     }
   }
 

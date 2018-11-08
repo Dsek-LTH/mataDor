@@ -6,9 +6,9 @@ import { AppContainer } from '../utils/styles'
 
 export default () => (
   <AppContainer>
-    <NumberListFetcher render={({numberList}) => [
+    <NumberListFetcher render={({ numberList }) => [
       <Header />,
-      <NotifyMe numberList={numberList}/>,
+      <NotifyMe numberList={numberList}/>
     ]}/>
   </AppContainer>
-);
+)

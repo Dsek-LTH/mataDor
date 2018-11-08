@@ -6,9 +6,9 @@ import { AppContainer } from '../utils/styles'
 
 export default () => (
   <AppContainer>
-    <NumberListFetcher render={({numberList}) => [
+    <NumberListFetcher render={({ numberList }) => [
       <Header key="header"/>,
-      <NumberContainer numberList={numberList} isAdmin={false} key="numbers"/>,
+      <NumberContainer numberList={numberList} isAdmin={false} key="numbers"/>
     ]}/>
   </AppContainer>
-);
+)

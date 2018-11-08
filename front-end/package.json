@@ -23,9 +23,6 @@
     "eject": "react-scripts eject",
     "lint:css": "stylelint './src/**/*.js'"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "browserslist": [
     ">0.2%",
     "not dead",
