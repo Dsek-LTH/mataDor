@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const NumberDiv = styled.div`
   background-color: #f280a1;
@@ -8,7 +8,7 @@ export const NumberDiv = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-`
+`;
 
 export const NumberListContainer = styled.div`
   grid-area: numbers;
@@ -22,4 +22,4 @@ export const NumberListContainer = styled.div`
   @media (max-width: 700px) {
     grid-template-columns: 1fr;
   }
-`
+`;

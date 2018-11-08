@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const AppContainer = styled.div`
   width: 100vw;
@@ -6,7 +6,7 @@ export const AppContainer = styled.div`
   grid-template-areas: 'header' '.' 'numbers';
   grid-template-rows: 90px 15px 1fr;
   grid-template-columns: 1fr;
-`
+`;
 
 export const StyledHeader = styled.div`
   grid-area: header;
@@ -21,7 +21,7 @@ export const StyledHeader = styled.div`
   @media (max-width: 700px) {
     font-size: 1.7em;
   }
-`
+`;
 
 export const NotifyContainer = styled.div`
   grid-area: numbers;
@@ -33,4 +33,4 @@ export const NotifyContainer = styled.div`
   justify-content: center;
   align-self: center;
   text-align: center;
-`
+`;

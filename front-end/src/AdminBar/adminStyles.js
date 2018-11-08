@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const AdminPanel = styled.div`
   grid-area: header;
@@ -17,7 +17,7 @@ export const AdminPanel = styled.div`
     width: 100%; 
     padding: 0%;
   }
-`
+`;
 
 export const ColoredButton = styled.button`
   grid-area: ${props => props.area}
@@ -31,7 +31,7 @@ export const ColoredButton = styled.button`
   cursor: pointer;
   border: 0;
   padding: 0.5em 0.75em;
-`
+`;
 
 export const FocusInput = styled.input`
   grid-area: currentInput;
@@ -40,4 +40,4 @@ export const FocusInput = styled.input`
   border: none;
   height: 100%;
   width: 100%;
-`
+`;
