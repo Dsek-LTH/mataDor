@@ -2,9 +2,9 @@ import React from 'react'
 import WaitingNumber from './WaitingNumber'
 import { NumberListContainer } from './numberListStyle'
 
-const NumberContainer = ({isAdmin, numberList}) => (
+const NumberContainer = ({isAdmin, numbers}) => (
   <NumberListContainer>
-    {numberList.map(num => (
+    {numbers.map(num => (
       <WaitingNumber key={num} isAdmin={isAdmin} number={num}/>
     ))}
   </NumberListContainer>

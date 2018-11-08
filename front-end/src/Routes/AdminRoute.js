@@ -4,7 +4,7 @@ import NumberListFetcher from '../Numbers/NumberListFetcher'
 import AdminView from '../AdminBar/AdminView'
 import { AppContainer } from '../utils/styles'
 
-const AdminRoute = ({numberList}) => (
+const NotifyRoute = () => (
   <AppContainer>
     <NumberListFetcher render={({numberList}) => ([
       <AdminView numberList={numberList} key="admin-view"/>,
@@ -13,4 +13,4 @@ const AdminRoute = ({numberList}) => (
   </AppContainer>
 )
 
-export default AdminRoute
+export default NotifyRoute
