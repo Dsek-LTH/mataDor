@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const AppContainer = styled.div`
-  width: 100%;
+  width: 100vw;
   display: grid;
   grid-template-areas: 'header' '.' 'numbers';
   grid-template-rows: 90px 15px 1fr;
@@ -25,8 +25,12 @@ export const StyledHeader = styled.div`
 
 export const NotifyContainer = styled.div`
   grid-area: numbers;
+  font-size: 1.7em;
   width: 50vw;
-  display: grid;
-  grid-column-gap: 10px;
-  grid-template-columns: 1fr 1fr 1fr;
+  margin-right: 25vw;
+  margin-left: 25vw;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  text-align: center;
 `

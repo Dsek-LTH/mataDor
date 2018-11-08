@@ -10,7 +10,7 @@ export default () => (
     <NumberListFetcher render={({numbers}) => [
       <Header key="header"/>,
       <NotifyMe numbers={numbers}/>,
-      <NumberContainer numberList={numbers} isAdmin={false} key="numbers"/>,
+      <NumberContainer numbers={numbers} isAdmin={false} key="numbers"/>,
     ]}/>
   </AppContainer>
 );

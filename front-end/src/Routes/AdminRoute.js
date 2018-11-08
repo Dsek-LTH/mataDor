@@ -7,8 +7,8 @@ import { AppContainer } from '../utils/styles'
 const NotifyRoute = () => (
   <AppContainer>
     <NumberListFetcher render={({numberList}) => ([
-      <AdminView numberList={numberList} key="admin-view"/>,
-      <NumberContainer numberList={numberList} isAdmin={true} key="numbers"/>,
+      <AdminView numbers={numberList} key="admin-view"/>,
+      <NumberContainer numbers={numberList} isAdmin={true} key="numbers"/>,
     ])}/>
   </AppContainer>
 )
