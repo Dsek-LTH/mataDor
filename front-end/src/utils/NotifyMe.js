@@ -48,36 +48,33 @@ class NotifyMe extends React.Component {
 
   shouldShowInput = () => !this.state.hide && !this.state.sentNotification;
 
+  waitingForFoodText = () => (
+    <NotifyContainer>väntar på {this.state.waitingForFood}</NotifyContainer>
+  );
+
+  //TODO turn into component
+  notificationForm = () => (
+    <NotifyContainer>
+      <input
+        value={this.state.input}
+        onChange={this.handleChange}
+        type="number"
+        placeholder="ditt nummer"
+      />
+      <ColoredButton color="#b4d2ba" onClick={this.registerForNotifications}>
+        notifiera mig!
+      </ColoredButton>
+      <ColoredButton color="#8ed081" onClick={this.hide}>
+        inga notiser, tack
+      </ColoredButton>
+    </NotifyContainer>
+  );
+
   render() {
     this.notifyMe();
-    const { input, waitingForFood } = this.state;
-    return (
-      this.shouldShowInput() &&
-      (waitingForFood ? (
-        <NotifyContainer>
-          väntar på
-          {waitingForFood}
-        </NotifyContainer>
-      ) : (
-        <NotifyContainer>
-          <input
-            value={input}
-            onChange={this.handleChange}
-            type="number"
-            placeholder="ditt nummer"
-          />
-          <ColoredButton
-            color="#b4d2ba"
-            onClick={this.registerForNotifications}
-          >
-            notifiera mig!
-          </ColoredButton>
-          <ColoredButton color="#8ed081" onClick={this.hide}>
-            inga notiser, tack
-          </ColoredButton>
-        </NotifyContainer>
-      ))
-    );
+    const { waitingForFood } = this.state;
+    if (!this.shouldShowInput()) return null;
+    return waitingForFood ? this.waitingForFoodText() : this.notificationForm();
   }
 }
 

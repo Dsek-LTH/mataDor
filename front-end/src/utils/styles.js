@@ -30,6 +30,7 @@ export const NotifyContainer = styled.div`
   margin-right: 25vw;
   margin-left: 25vw;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-self: center;
   text-align: center;
