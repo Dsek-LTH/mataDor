@@ -24,6 +24,12 @@ class AdminView extends React.Component {
     }
   };
 
+  clearOnEscape = (event) => {
+    if (event.key === "Escape") {
+      this.setState({ typed: "" });
+    }
+  }
+
   onFormSubmit(event) {
     event.preventDefault();
     this.sendNumber();
@@ -61,6 +67,7 @@ class AdminView extends React.Component {
           value={this.state.typed}
           onChange={this.updateTyped}
           onBlur={this.focusInput}
+          onKeyDown={this.clearOnEscape}
           ref={this.inputRef}
           maxLength={MAX_NUMBER_LENGTH}
           autoFocus
