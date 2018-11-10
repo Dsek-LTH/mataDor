@@ -2,31 +2,15 @@ import React from "react";
 import { addOrRemove, clear } from "../utils/api";
 import { AdminPanel, FocusInput, ColoredButton } from "./adminStyles";
 
+const filterNumeric = str => str.replace(/\D/g,'');
+
 class AdminView extends React.Component {
   constructor(props) {
     super(props);
     this.state = { typed: "" };
+    this.inputRef = React.createRef();
+    this.updateTyped = this.updateTyped.bind(this);
   }
-
-  // Implemented this way to always accept input!
-  handleKeyDown = ({ key }) => {
-    switch (key) {
-      case "Escape":
-        this.setState({ typed: "" });
-        break;
-      case "Enter":
-        this.sendNumber();
-        break;
-      case "Del":
-      case "Backspace":
-        this.setState({
-          typed: this.state.typed.substring(0, this.state.typed.length - 1)
-        });
-        break;
-      default:
-        this.handleIfNumber(key);
-    }
-  };
 
   sendNumber = () => {
     this.sendNumberWithParam(this.state.typed);
@@ -41,26 +25,17 @@ class AdminView extends React.Component {
     }
   };
 
-  undo = () => {
-    // Not yet implemented use redux
-  };
-
-  handleIfNumber(keyCode) {
-    if (this.state.typed.length < 8) {
-      // max len accpt by backend
-      const inputSymbol = String.fromCharCode(keyCode);
-      if (inputSymbol && !isNaN(inputSymbol)) {
-        this.setState({ typed: this.state.typed.concat(inputSymbol) });
-      }
-    }
+  focusInput = () => {
+    // setTimeout hack necessary to prevent browsers blocking this behaviour
+    setTimeout(() => this.inputRef.current.focus(), 1);
   }
 
-  componentWillMount() {
-    document.addEventListener("keydown", this.handleKeyDown.bind(this));
+  updateTyped = (event) => {
+    this.setState({ typed: filterNumeric(event.target.value) });
   }
 
-  componentWillUnmount() {
-    document.removeEventListener("keydown", this.handleKeyDown.bind(this));
+  componentDidMount() {
+    this.focusInput();
   }
 
   render() {
@@ -69,7 +44,15 @@ class AdminView extends React.Component {
         <ColoredButton color="#dbafc1" area="clear" onClick={clear}>
           rensa
         </ColoredButton>
-        <FocusInput value={this.state.typed} type="number"/>
+        <FocusInput
+          type="tel"
+          pattern="[0-9]*"
+          inputMode="numeric"
+          value={this.state.typed}
+          onChange={this.updateTyped}
+          onBlur={this.focusInput}
+          ref={this.inputRef}
+        />
         <ColoredButton color="#b4d2ba" area="undo" onClick={this.undo}>
           :)
         </ColoredButton>
