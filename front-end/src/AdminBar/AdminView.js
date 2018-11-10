@@ -39,6 +39,11 @@ class AdminView extends React.Component {
 
   componentDidMount() {
     this.focusInput();
+    window.addEventListener("focus", this.focusInput);
+  }
+
+  componentWillUnmount() {
+    window.addEventListener("focus", this.focusInput);
   }
 
   render() {
