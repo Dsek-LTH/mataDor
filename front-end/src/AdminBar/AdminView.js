@@ -2,6 +2,7 @@ import React from "react";
 import { addOrRemove, clear } from "../utils/api";
 import { AdminForm, FocusInput, ColoredButton } from "./adminStyles";
 
+const MAX_NUMBER_LENGTH = 8;
 const filterNumeric = str => str.replace(/\D/g,'');
 
 class AdminView extends React.Component {
@@ -34,7 +35,8 @@ class AdminView extends React.Component {
   }
 
   updateTyped = (event) => {
-    this.setState({ typed: filterNumeric(event.target.value) });
+    const typed = filterNumeric(event.target.value).substring(0, MAX_NUMBER_LENGTH);
+    this.setState({ typed });
   }
 
   componentDidMount() {
@@ -60,6 +62,8 @@ class AdminView extends React.Component {
           onChange={this.updateTyped}
           onBlur={this.focusInput}
           ref={this.inputRef}
+          maxLength={MAX_NUMBER_LENGTH}
+          autoFocus
         />
         <ColoredButton color="#b4d2ba" area="undo" onClick={this.undo} type="button">
           :)
