@@ -1,6 +1,6 @@
 import React from "react";
 import { addOrRemove, clear } from "../utils/api";
-import { AdminPanel, FocusInput, ColoredButton } from "./adminStyles";
+import { AdminForm, FocusInput, ColoredButton } from "./adminStyles";
 
 const filterNumeric = str => str.replace(/\D/g,'');
 
@@ -9,7 +9,7 @@ class AdminView extends React.Component {
     super(props);
     this.state = { typed: "" };
     this.inputRef = React.createRef();
-    this.updateTyped = this.updateTyped.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   sendNumber = () => {
@@ -19,11 +19,14 @@ class AdminView extends React.Component {
   sendNumberWithParam = num => {
     if (num.length > 0) {
       addOrRemove(num);
-      this.setState({
-        typed: ""
-      });
+      this.setState({ typed: "" });
     }
   };
+
+  onFormSubmit(event) {
+    event.preventDefault();
+    this.sendNumber();
+  }
 
   focusInput = () => {
     // setTimeout hack necessary to prevent browsers blocking this behaviour
@@ -40,8 +43,8 @@ class AdminView extends React.Component {
 
   render() {
     return (
-      <AdminPanel>
-        <ColoredButton color="#dbafc1" area="clear" onClick={clear}>
+      <AdminForm onSubmit={this.onFormSubmit}>
+        <ColoredButton color="#dbafc1" area="clear" onClick={clear} type="button">
           rensa
         </ColoredButton>
         <FocusInput
@@ -53,13 +56,13 @@ class AdminView extends React.Component {
           onBlur={this.focusInput}
           ref={this.inputRef}
         />
-        <ColoredButton color="#b4d2ba" area="undo" onClick={this.undo}>
+        <ColoredButton color="#b4d2ba" area="undo" onClick={this.undo} type="button">
           :)
         </ColoredButton>
-        <ColoredButton color="#8ed081" area="send" onClick={this.sendNumber}>
+        <ColoredButton color="#8ed081" area="send" onClick={this.sendNumber} type="submit">
           send
         </ColoredButton>
-      </AdminPanel>
+      </AdminForm>
     );
   }
 }
