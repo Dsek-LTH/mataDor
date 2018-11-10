@@ -40,4 +40,6 @@ export const FocusInput = styled.input`
   border: none;
   height: 100%;
   width: 100%;
+  padding: 0 0.25em;
+  box-sizing: border-box;
 `;
