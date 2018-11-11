@@ -1,41 +1,16 @@
 import React from "react";
 import { addOrRemove, clear } from "../utils/api";
-import { AdminPanel, FocusInput, ColoredButton } from "./adminStyles";
-import {
-  ESCAPE_KEY,
-  ENTER_KEY,
-  NUMPAD_ENTER_KEY,
-  BACKSPACE,
-  DELETE
-} from "../utils/keypadNumbers";
+import { AdminForm, FocusInput, ColoredButton } from "./adminStyles";
+
+const MAX_NUMBER_LENGTH = 8;
+const filterNumeric = str => str.replace(/\D/g,'');
 
 class AdminView extends React.Component {
   constructor(props) {
     super(props);
     this.state = { typed: "" };
+    this.inputRef = React.createRef();
   }
-
-  // Implemented this way to always accept input!
-  handleKeyDown = event => {
-    const keyCode = event.keyCode;
-    switch (keyCode) {
-      case ESCAPE_KEY:
-        this.setState({ typed: "" });
-        break;
-      case ENTER_KEY:
-      case NUMPAD_ENTER_KEY:
-        this.sendNumber();
-        break;
-      case DELETE:
-      case BACKSPACE:
-        this.setState({
-          typed: this.state.typed.substring(0, this.state.typed.length - 1)
-        });
-        break;
-      default:
-        this.handleIfNumber(keyCode);
-    }
-  };
 
   sendNumber = () => {
     this.sendNumberWithParam(this.state.typed);
@@ -44,48 +19,65 @@ class AdminView extends React.Component {
   sendNumberWithParam = num => {
     if (num.length > 0) {
       addOrRemove(num);
-      this.setState({
-        typed: ""
-      });
+      this.setState({ typed: "" });
     }
   };
 
-  undo = () => {
-    // Not yet implemented use redux
+  clearOnEscape = (event) => {
+    if (event.key === "Escape") {
+      this.setState({ typed: "" });
+    }
   };
 
-  handleIfNumber(keyCode) {
-    if (this.state.typed.length < 8) {
-      // max len accpt by backend
-      const inputSymbol = String.fromCharCode(keyCode);
-      if (inputSymbol && !isNaN(inputSymbol)) {
-        this.setState({ typed: this.state.typed.concat(inputSymbol) });
-      }
-    }
-  }
+  onFormSubmit = (event) => {
+    event.preventDefault();
+    this.sendNumber();
+  };
 
-  componentWillMount() {
-    document.addEventListener("keydown", this.handleKeyDown.bind(this));
+  focusInput = () => {
+    // setTimeout hack necessary to prevent browsers blocking this behaviour
+    setTimeout(() => this.inputRef.current.focus(), 1);
+  };
+
+  updateTyped = (event) => {
+    const typed = filterNumeric(event.target.value).substring(0, MAX_NUMBER_LENGTH);
+    this.setState({ typed });
+  };
+
+  componentDidMount() {
+    this.focusInput();
+    window.addEventListener("focus", this.focusInput);
   }
 
   componentWillUnmount() {
-    document.removeEventListener("keydown", this.handleKeyDown.bind(this));
+    window.addEventListener("focus", this.focusInput);
   }
 
   render() {
     return (
-      <AdminPanel>
-        <ColoredButton color="#dbafc1" area="clear" onClick={clear}>
+      <AdminForm onSubmit={this.onFormSubmit}>
+        <ColoredButton color="#dbafc1" area="clear" onClick={clear} type="button">
           rensa
         </ColoredButton>
-        <FocusInput value={this.state.typed} type="number" />
-        <ColoredButton color="#b4d2ba" area="undo" onClick={this.undo}>
+        <FocusInput
+          type="tel"
+          pattern="[0-9]*"
+          inputMode="numeric"
+          value={this.state.typed}
+          onChange={this.updateTyped}
+          onBlur={this.focusInput}
+          onKeyDown={this.clearOnEscape}
+          ref={this.inputRef}
+          maxLength={MAX_NUMBER_LENGTH}
+          autoFocus
+        />
+        <ColoredButton color="#b4d2ba" area="undo" onClick={this.undo} type="button">
           :)
         </ColoredButton>
-        <ColoredButton color="#8ed081" area="send" onClick={this.sendNumber}>
+        <ColoredButton color="#8ed081" area="send" onClick={this.sendNumber} type="submit">
           send
         </ColoredButton>
-      </AdminPanel>
+      </AdminForm>
     );
   }
 }

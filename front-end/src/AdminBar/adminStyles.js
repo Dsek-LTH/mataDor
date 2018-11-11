@@ -1,20 +1,20 @@
 import styled from "styled-components";
 
-export const AdminPanel = styled.div`
+export const AdminForm = styled.form`
   grid-area: header;
   display: grid;
-  width: 96%; 
+  width: 96%;
   padding: 2%;
   grid-template-columns 1fr 6fr 1fr 1fr;
   grid-template-areas: "clear currentInput send undo";
-  
+
   @media (max-width: 700px) {
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
      "clear undo send"
      "currentInput currentInput currentInput";
-    width: 100%; 
+    width: 100%;
     padding: 0;
   }
 `;
@@ -40,4 +40,6 @@ export const FocusInput = styled.input`
   border: none;
   height: 100%;
   width: 100%;
+  padding: 0 0.25em;
+  box-sizing: border-box;
 `;
