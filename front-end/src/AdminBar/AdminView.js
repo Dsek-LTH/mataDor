@@ -10,7 +10,6 @@ class AdminView extends React.Component {
     super(props);
     this.state = { typed: "" };
     this.inputRef = React.createRef();
-    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   sendNumber = () => {
@@ -28,22 +27,22 @@ class AdminView extends React.Component {
     if (event.key === "Escape") {
       this.setState({ typed: "" });
     }
-  }
+  };
 
-  onFormSubmit(event) {
+  onFormSubmit = (event) => {
     event.preventDefault();
     this.sendNumber();
-  }
+  };
 
   focusInput = () => {
     // setTimeout hack necessary to prevent browsers blocking this behaviour
     setTimeout(() => this.inputRef.current.focus(), 1);
-  }
+  };
 
   updateTyped = (event) => {
     const typed = filterNumeric(event.target.value).substring(0, MAX_NUMBER_LENGTH);
     this.setState({ typed });
-  }
+  };
 
   componentDidMount() {
     this.focusInput();
