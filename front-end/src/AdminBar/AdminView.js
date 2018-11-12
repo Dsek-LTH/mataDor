@@ -47,6 +47,8 @@ class AdminView extends React.Component {
     this.setState({ typed });
   };
 
+  isNewNumber = number => !this.props.numberList.includes(number);
+
   componentDidMount() {
     this.focusInput();
     window.addEventListener("focus", this.focusInput);
@@ -58,7 +60,7 @@ class AdminView extends React.Component {
 
   render() {
     const { typed } = this.state;
-    const newNumber = !this.props.numberList.includes(typed);
+    const newNumber = this.isNewNumber(typed);
     return (
       <AdminForm onSubmit={this.onFormSubmit}>
         <ColoredButton
