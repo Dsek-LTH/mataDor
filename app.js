@@ -20,8 +20,14 @@ app.get("/subscribe", (req, res) => {
     "Cache-Control": "no-cache"
   });
 
-  Stream.on("push", (event, data) => {
+  function onPush(event, data) {
     res.write(`data: ${data} \n\n`);
+  }
+
+  Stream.on("push", onPush);
+
+  req.on("close", function() {
+    Streamt.removeListener("push", onPush);
   });
 
   // Give list to new ppl
