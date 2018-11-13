@@ -14,7 +14,7 @@ export default ({ location }) => (
     <NumberListFetcher
       render={({ numberList }) => [
         <Header text="Mat redo för upphämtning" />,
-        <NotifyMe numberList={numberList} />,
+        /*<NotifyMe numberList={numberList} />, add in future*/
         <NumberContainer numberList={numberList} isAdmin={false} big={false} />
       ]}
     />
