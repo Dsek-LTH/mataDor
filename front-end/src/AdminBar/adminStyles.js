@@ -6,13 +6,13 @@ export const AdminForm = styled.form`
   width: 96%;
   padding: 2%;
   grid-template-columns 1fr 6fr 1fr 1fr;
-  grid-template-areas: "clear currentInput send undo";
+  grid-template-areas: "clear currentInput send";
 
   @media (max-width: 700px) {
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
-     "clear undo send"
+     "clear send"
      "currentInput currentInput currentInput";
     width: 100%;
     padding: 0;

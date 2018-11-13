@@ -83,9 +83,6 @@ class AdminView extends React.Component {
           maxLength={MAX_NUMBER_LENGTH}
           autoFocus
         />
-        <ColoredButton color="#b4d2ba" area="undo" type="button">
-          :)
-        </ColoredButton>
         <ColoredButton
           color={newNumber ? "#8ed081" : "#dbafc1"}
           area="send"
