@@ -1,5 +1,5 @@
 import AdminRoute from "./AdminRoute";
-import NotifyRoute from "./NotifyRoute";
+import TvRoute from "./TvRoute";
 import HomeRoute from "./HomeRoute";
 
-export { AdminRoute, NotifyRoute, HomeRoute };
+export { AdminRoute, TvRoute, HomeRoute };
