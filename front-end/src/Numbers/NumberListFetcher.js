@@ -1,4 +1,5 @@
 import React from "react";
+import { backendURL } from "../config.js";
 
 class NumberListFetcher extends React.Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class NumberListFetcher extends React.Component {
   }
 
   componentDidMount() {
-    const eventSource = new EventSource("http://localhost:3000/subscribe");
+    const eventSource = new EventSource(backendURL + "/subscribe");
 
     eventSource.onmessage = e => {
       const numberList = JSON.parse(e.data);

@@ -3,6 +3,8 @@ const EventEmitter = require("events");
 const bodyParser = require("body-parser");
 const path = require("path");
 
+const config = require("./config");
+
 const app = express();
 const Stream = new EventEmitter();
 
@@ -51,7 +53,7 @@ app.get("*", (req, res) =>
   res.sendFile(path.join(`${__dirname}/front-end/build/index.html`))
 );
 
-app.listen(3000, () => console.log("\nApp started at http://localhost:3000/"));
+app.listen(config.port, () => console.log("\nApp started at " + config.port));
 
 // Helpers that should be in another file
 const sendList = () =>
