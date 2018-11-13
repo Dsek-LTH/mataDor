@@ -10,9 +10,9 @@ Ett litet system för att hålla reda på när man kan hämta sin mat! Tanken ä
 - open http://localhost:3000/ in your favorite browser.
 - adding numbers is available at /admin
 
-## Deployment
+## Deployment and default values
 
-Note: make sure to set env. variables:
-
-- MATADOR_PORT
-- MATADOR_BACKEND_URL
+| Env-variable        | Default Value                        |
+| :------------------ | :----------------------------------- |
+| MATADOR_PORT        | `3000`                               |
+| MATADOR_BACKEND_URL | `"http://localhost:" + MATADOR_PORT` |
