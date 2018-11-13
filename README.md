@@ -10,7 +10,7 @@ Ett litet system för att hålla reda på när man kan hämta sin mat! Tanken ä
 - open http://localhost:3000/ in your favorite browser.
 - adding numbers is available at /admin
 
-## Deployment and default values
+## Default environmental values
 
 | Env-variable        | Default Value                        |
 | :------------------ | :----------------------------------- |
