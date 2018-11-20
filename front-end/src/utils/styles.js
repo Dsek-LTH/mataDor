@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const AppContainer = styled.div`
   width: 100vw;
   display: grid;
-
   grid-template-areas: "header" "empty" "numbers";
   grid-template-rows: 110px ${props => props.emptySize || "20px"} 1fr;
   grid-template-columns: 1fr;
@@ -39,7 +38,7 @@ export const NotifyContainer = styled.div`
 
 export const FormContainer = styled.div`
   grid-area: empty;
-  font-size: ${props => props.fontSize || "1.7em"};
+  font-size: ${props => props.fontSize || "1em"};
   width: 20vw;
   margin-right: 40vw;
   margin-left: 40vw;
