@@ -2,13 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { StyledHeader } from "./styles";
 import { ColoredButton } from "../AdminBar/adminStyles";
-import { NotifyContainer } from "./styles";
+import { NotifyContainer, FormContainer, WaitInput } from "./styles";
 import bell from "./bell.png";
 
 const BELL = 0;
 const INPUT = 1;
 const WAITING = 2;
 const DONE = 3;
+const MAX_NUMBER_LENGTH = 8;
 
 class NotifyHeader extends React.Component {
   constructor(props) {
@@ -31,9 +32,7 @@ class NotifyHeader extends React.Component {
   };
 
   inputToWaiting = foodNumber => {
-    if (foodNumber.length > 0) {
-      //TODO VILKET NUMMER ÄR MINSTA PÅ LAPPARNA? FINNS 0-9?
-      //TODO TRYING SOMETHING NEW (or rather, old) A STATE MACHINE
+    if (foodNumber.length > 1 && !foodNumber.startsWith("-")) {
       this.setState({ stage: WAITING, foodNumber });
     }
   };
@@ -99,23 +98,34 @@ class NotificationForm extends React.Component {
 
   handleChange = e => this.setState({ input: e.target.value });
 
-  //TODO handle submit
+  onFormSubmit = event => {
+    event.preventDefault();
+    this.sendNumber(this.state.input);
+  };
 
   render() {
     const { foodSetter } = this.props;
     const { input } = this.state;
     return (
-      <NotifyContainer>
-        <input
+      <FormContainer>
+        <WaitInput
+          type="tel"
+          pattern="[0-9]*"
+          inputMode="numeric"
+          maxLength={MAX_NUMBER_LENGTH}
           value={input}
           onChange={this.handleChange}
-          type="number"
           placeholder="ditt nummer"
+          autofocus
         />
-        <ColoredButton color="#b4d2ba" onClick={() => foodSetter(input)}>
+        <ColoredButton
+          type="submit"
+          color="#b4d2ba"
+          onClick={() => foodSetter(input)}
+        >
           notifiera mig!
         </ColoredButton>
-      </NotifyContainer>
+      </FormContainer>
     );
   }
 }
