@@ -107,25 +107,27 @@ class NotificationForm extends React.Component {
     const { foodSetter } = this.props;
     const { input } = this.state;
     return (
-      <FormContainer>
-        <WaitInput
-          type="tel"
-          pattern="[0-9]*"
-          inputMode="numeric"
-          maxLength={MAX_NUMBER_LENGTH}
-          value={input}
-          onChange={this.handleChange}
-          placeholder="ditt nummer"
-          autofocus
-        />
-        <ColoredButton
-          type="submit"
-          color="#b4d2ba"
-          onClick={() => foodSetter(input)}
-        >
-          notifiera mig!
-        </ColoredButton>
-      </FormContainer>
+      <form onSubmit={this.onFormSubmit}>
+        <FormContainer>
+          <WaitInput
+            type="tel"
+            pattern="[0-9]*"
+            inputMode="numeric"
+            maxLength={MAX_NUMBER_LENGTH}
+            value={input}
+            onChange={this.handleChange}
+            placeholder="ditt nummer"
+            autofocus
+          />
+          <ColoredButton
+            type="submit"
+            color="#b4d2ba"
+            onClick={() => foodSetter(input)}
+          >
+            notifiera mig!
+          </ColoredButton>
+        </FormContainer>
+      </form>
     );
   }
 }
