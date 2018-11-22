@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { StyledHeader } from "./styles";
 import { ColoredButton } from "../AdminBar/adminStyles";
 import { NotifyContainer, FormContainer, WaitInput } from "./styles";
-import bell from "./bell.png";
+import bell from "./bell.svg";
 
 const STATES = {
   BELL: 0,
@@ -76,7 +76,7 @@ class NotifyHeader extends React.Component {
 }
 
 const BellIcon = styled.img`
-  max-height: 40px;
+  max-height: 60px;
 `;
 
 const BellButton = styled.button`
