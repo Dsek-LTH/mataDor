@@ -5,17 +5,19 @@ import { ColoredButton } from "../AdminBar/adminStyles";
 import { NotifyContainer, FormContainer, WaitInput } from "./styles";
 import bell from "./bell.png";
 
-const BELL = 0;
-const INPUT = 1;
-const WAITING = 2;
-const DONE = 3;
+const STATES = {
+  BELL: 0,
+  INPUT: 1,
+  WAITING: 2,
+  DONE: 3
+};
 const MAX_NUMBER_LENGTH = 8;
 
 class NotifyHeader extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      stage: BELL,
+      stage: STATES.BELL,
       foodNumber: ""
     };
   }
@@ -26,27 +28,28 @@ class NotifyHeader extends React.Component {
     }
     Notification.requestPermission().then(permission => {
       if (permission === "granted") {
-        this.setState({ stage: INPUT });
+        this.setState({ stage: STATES.INPUT });
       }
     });
   };
 
   inputToWaiting = foodNumber => {
     if (foodNumber.length > 1 && !foodNumber.startsWith("-")) {
-      this.setState({ stage: WAITING, foodNumber });
+      this.setState({ stage: STATES.WAITING, foodNumber });
     }
   };
 
   notifyMeIfTimeIsRight = () => {
     const { numberList } = this.props;
     const { stage, foodNumber } = this.state;
-    if (stage === WAITING && numberList.includes(foodNumber)) {
+    if (stage === STATES.WAITING && numberList.includes(foodNumber)) {
       new Notification("Din mat är klar!");
-      this.setState({ stage: DONE });
+      this.setState({ stage: STATES.DONE });
     }
   };
 
   render() {
+    const { BELL, INPUT, WAITING, DONE } = STATES;
     this.notifyMeIfTimeIsRight();
     return (
       <div>
