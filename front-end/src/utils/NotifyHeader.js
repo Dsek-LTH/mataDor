@@ -3,19 +3,21 @@ import styled from "styled-components";
 import { StyledHeader } from "./styles";
 import { ColoredButton } from "../AdminBar/adminStyles";
 import { NotifyContainer, FormContainer, WaitInput } from "./styles";
-import bell from "./bell.png";
+import bell from "./bell.svg";
 
-const BELL = 0;
-const INPUT = 1;
-const WAITING = 2;
-const DONE = 3;
+const STATES = {
+  BELL: 0,
+  INPUT: 1,
+  WAITING: 2,
+  DONE: 3
+};
 const MAX_NUMBER_LENGTH = 8;
 
 class NotifyHeader extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      stage: BELL,
+      stage: STATES.BELL,
       foodNumber: ""
     };
   }
@@ -26,27 +28,28 @@ class NotifyHeader extends React.Component {
     }
     Notification.requestPermission().then(permission => {
       if (permission === "granted") {
-        this.setState({ stage: INPUT });
+        this.setState({ stage: STATES.INPUT });
       }
     });
   };
 
   inputToWaiting = foodNumber => {
     if (foodNumber.length > 1 && !foodNumber.startsWith("-")) {
-      this.setState({ stage: WAITING, foodNumber });
+      this.setState({ stage: STATES.WAITING, foodNumber });
     }
   };
 
   notifyMeIfTimeIsRight = () => {
     const { numberList } = this.props;
     const { stage, foodNumber } = this.state;
-    if (stage === WAITING && numberList.includes(foodNumber)) {
+    if (stage === STATES.WAITING && numberList.includes(foodNumber)) {
       new Notification("Din mat är klar!");
-      this.setState({ stage: DONE });
+      this.setState({ stage: STATES.DONE });
     }
   };
 
   render() {
+    const { BELL, INPUT, WAITING, DONE } = STATES;
     this.notifyMeIfTimeIsRight();
     return (
       <div>
@@ -73,7 +76,7 @@ class NotifyHeader extends React.Component {
 }
 
 const BellIcon = styled.img`
-  max-height: 40px;
+  max-height: 60px;
 `;
 
 const BellButton = styled.button`
@@ -107,25 +110,27 @@ class NotificationForm extends React.Component {
     const { foodSetter } = this.props;
     const { input } = this.state;
     return (
-      <FormContainer>
-        <WaitInput
-          type="tel"
-          pattern="[0-9]*"
-          inputMode="numeric"
-          maxLength={MAX_NUMBER_LENGTH}
-          value={input}
-          onChange={this.handleChange}
-          placeholder="ditt nummer"
-          autofocus
-        />
-        <ColoredButton
-          type="submit"
-          color="#b4d2ba"
-          onClick={() => foodSetter(input)}
-        >
-          notifiera mig!
-        </ColoredButton>
-      </FormContainer>
+      <form onSubmit={this.onFormSubmit}>
+        <FormContainer>
+          <WaitInput
+            type="tel"
+            pattern="[0-9]*"
+            inputMode="numeric"
+            maxLength={MAX_NUMBER_LENGTH}
+            value={input}
+            onChange={this.handleChange}
+            placeholder="ditt nummer"
+            autofocus
+          />
+          <ColoredButton
+            type="submit"
+            color="#b4d2ba"
+            onClick={() => foodSetter(input)}
+          >
+            notifiera mig!
+          </ColoredButton>
+        </FormContainer>
+      </form>
     );
   }
 }

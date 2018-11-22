@@ -13,7 +13,7 @@ export default ({ location }) => (
     <NumberListFetcher
       render={({ numberList }) => [
         <NotifyHeader numberList={numberList} />,
-        <NumberContainer numberList={numberList} isAdmin={false} big={false} />
+        <NumberContainer numberList={numberList} isAdmin={false} tv={false} />
       ]}
     />
   </AppContainer>
