@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const NumberDiv = styled.div`
   background-color: #f280a1;
-  font-size: ${props => (props.big ? "7em" : "4em")};
-  ${props => props.big && "color: black"};
+  font-size: ${props => (props.tv ? "7em" : "4em")};
+  ${props => props.tv && "color: black"};
   font-weight: bold;
   display: flex;
   align-items: center;

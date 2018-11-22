@@ -9,7 +9,7 @@ export default () => (
     <NumberListFetcher
       render={({ numberList }) => [
         <Header text="AVHÄMTNING" fontSize="7em" />,
-        <NumberContainer numberList={numberList} isAdmin={false} big={true} />
+        <NumberContainer numberList={numberList} isAdmin={false} tv={true} />
       ]}
     />
   </AppContainer>
