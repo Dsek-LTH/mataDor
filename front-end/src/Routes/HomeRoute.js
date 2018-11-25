@@ -1,19 +1,19 @@
 import React from "react";
-import Header from "../utils/Header";
+import { Redirect } from "react-router";
 import NumberContainer from "../Numbers/NumberContainer";
+import NotifyHeader from "../utils/NotifyHeader";
 import NumberListFetcher from "../Numbers/NumberListFetcher";
 import { AppContainer } from "../utils/styles";
 
-export default () => (
-  <AppContainer>
+export default ({ location }) => (
+  <AppContainer emptySize="70px">
+    {location.search.includes("tv") && (
+      <Redirect to="/tv" />
+    ) /*Any url with TV in it redirects to tv*/}
     <NumberListFetcher
       render={({ numberList }) => [
-        <Header key="header" />,
-        <NumberContainer
-          numberList={numberList}
-          isAdmin={false}
-          key="numbers"
-        />
+        <NotifyHeader numberList={numberList} />,
+        <NumberContainer numberList={numberList} isAdmin={false} tv={false} />
       ]}
     />
   </AppContainer>
