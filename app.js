@@ -29,7 +29,7 @@ app.get("/subscribe", (req, res) => {
   Stream.on("push", onPush);
 
   req.on("close", function() {
-    Streamt.removeListener("push", onPush);
+    Stream.removeListener("push", onPush);
   });
 
   // Give list to new ppl
