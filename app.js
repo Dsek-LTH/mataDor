@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 // We don't use a real database, because we don't care if the server crashes,
 // and we don't want to store any information more than 1 pub.
-let currentFood = [];
+let currentFood = []; // string[]
 
 app.get("/subscribe", (req, res) => {
   // Setup an event stream
@@ -22,22 +22,29 @@ app.get("/subscribe", (req, res) => {
     "Cache-Control": "no-cache"
   });
 
-  Stream.on("push", (event, data) => {
+  function onPush(event, data) {
     res.write(`data: ${data} \n\n`);
+  }
+
+  Stream.on("push", onPush);
+
+  req.on("close", function() {
+    Stream.removeListener("push", onPush);
   });
 
-  // Give list to new ppl
+  // Give list to new clients
   sendList();
 });
 
 app.post("/addOrRemove", (req, res) => {
   const id = req.body.id.toString(); // we need this to check length
+  // isNaN ensures we only accept numerical values
   if (id.length < 9 && !isNaN(id)) {
     const operation = addOrRemoveFood(id);
     return res.json({ message: `food was ${operation}` });
   }
   res.status(400).json({
-    message: "FoodId must be 1-8 digit integer"
+    message: "Bad Request: id must be 1-8 digit integer."
   });
 });
 
@@ -53,7 +60,9 @@ app.get("*", (req, res) =>
   res.sendFile(path.join(`${__dirname}/front-end/build/index.html`))
 );
 
-app.listen(config.port, () => console.log("\nApp started at " + config.port));
+app.listen(config.port, () =>
+  console.log("\nApp started at http://localhost:" + config.port)
+);
 
 // Helpers that should be in another file
 const sendList = () =>
@@ -66,11 +75,11 @@ const clearList = () => {
   sendList();
 };
 
-const isInList = num => currentFood.filter(item => item === num).length !== 0;
+const isInList = num => currentFood.indexOf(num) > -1;
 
 const addOrRemoveFood = num => {
   if (!isInList(num)) {
-    currentFood = currentFood.concat(num);
+    currentFood.push(num);
     sendList();
     return "added";
   }
