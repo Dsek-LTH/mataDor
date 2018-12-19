@@ -1,0 +1,6 @@
+apps:
+  - script : app.js
+    env:
+      NODE_ENV: production
+      MATADOR_PORT: 3001
+      MATADOR_BACKEND_URL: https://mat.10av10.com

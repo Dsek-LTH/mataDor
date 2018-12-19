@@ -47,6 +47,12 @@ export const FormContainer = styled.div`
   justify-content: center;
   align-self: center;
   text-align: center;
+
+  @media (max-width: 700px) {
+    width: 80vw;
+    margin-right: 10vw;
+    margin-left: 10vw;
+  }
 `;
 
 export const WaitInput = styled.input`
