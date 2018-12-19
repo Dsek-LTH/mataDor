@@ -1,6 +1,8 @@
 import React from "react";
 import { StyledHeader } from "./styles";
 
-const Header = () => <StyledHeader>Mat redo för upphämtning</StyledHeader>;
+const Header = ({ text, fontSize }) => (
+  <StyledHeader fontSize={fontSize}>{text}</StyledHeader>
+);
 
 export default Header;

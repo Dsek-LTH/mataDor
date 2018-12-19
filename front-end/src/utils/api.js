@@ -1,8 +1,8 @@
-const backendUrl = "http://localhost:3000";
+import { backendURL } from "../config";
 
 export const addOrRemove = num =>
-  postData(`${backendUrl}/addOrRemove/`, { id: num });
-export const clear = () => postData(`${backendUrl}/clear`);
+  postData(`${backendURL}/addOrRemove/`, { id: num });
+export const clear = () => postData(`${backendURL}/clear`);
 
 function postData(url = "", data = {}) {
   return fetch(url, {
