@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "setup": "yarn && cd front-end/ && yarn && yarn build && cd .. && node app.js"
+    "setup": "yarn && cd front-end/ && yarn && yarn build && cd .. && node app.js",
+    "dockerize": "docker build -t oskardamkjaer/matador . && docker run -it -v ${PWD}:/usr/src/app -v /usr/src/app/node_modules -p 3000:3000 --rm oskardamkjaer/matador"
   },
   "author": "",
   "license": "ISC",
