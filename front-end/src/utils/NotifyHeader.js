@@ -33,7 +33,7 @@ class NotifyHeader extends React.Component {
     });
   };
 
-  inputToWaiting = foodNumber => {
+  foodSetter = foodNumber => {
     if (foodNumber.length > 1 && !foodNumber.startsWith("-")) {
       this.setState({ stage: STATES.WAITING, foodNumber });
     }
@@ -43,7 +43,18 @@ class NotifyHeader extends React.Component {
     const { numberList } = this.props;
     const { stage, foodNumber } = this.state;
     if (stage === STATES.WAITING && numberList.includes(foodNumber)) {
-      new Notification("Din mat är klar!");
+      try {
+        new Notification("Din mat är klar!");
+      } catch (e) {
+        navigator.serviceWorker.register("service-worker.js");
+        Notification.requestPermission(function(result) {
+          if (result === "granted") {
+            navigator.serviceWorker.ready.then(function(registration) {
+              registration.showNotification("Din mat är klar!");
+            });
+          }
+        });
+      }
       this.setState({ stage: STATES.DONE });
     }
   };
@@ -60,7 +71,7 @@ class NotifyHeader extends React.Component {
           )}
         </StyledHeader>
         {this.state.stage === INPUT && (
-          <NotificationForm foodSetter={this.inputToWaiting} />
+          <NotificationForm foodSetter={this.foodSetter} />
         )}
         {this.state.stage === WAITING && (
           <NotifyContainer>väntar på {this.state.foodNumber}</NotifyContainer>
@@ -101,11 +112,6 @@ class NotificationForm extends React.Component {
 
   handleChange = e => this.setState({ input: e.target.value });
 
-  onFormSubmit = event => {
-    event.preventDefault();
-    this.sendNumber(this.state.input);
-  };
-
   render() {
     const { foodSetter } = this.props;
     const { input } = this.state;
@@ -123,7 +129,7 @@ class NotificationForm extends React.Component {
             autofocus
           />
           <ColoredButton
-            type="submit"
+            type="button"
             color="#b4d2ba"
             onClick={() => foodSetter(input)}
           >

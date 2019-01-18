@@ -1,13 +1,26 @@
 const express = require("express");
 const EventEmitter = require("events");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const path = require("path");
+
+const whitelist = ["mat.10av.10.com", "mat.dsek.se", "localhost:3001"];
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  }
+};
 
 const config = require("./config");
 
 const app = express();
 const Stream = new EventEmitter();
 
+app.use(cors());
 app.use(bodyParser.json());
 
 // We don't use a real database, because we don't care if the server crashes,
