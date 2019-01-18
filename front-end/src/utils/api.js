@@ -1,8 +1,5 @@
-import { backendURL } from "../config";
-
-export const addOrRemove = num =>
-  postData(`${backendURL}/addOrRemove/`, { id: num });
-export const clear = () => postData(`${backendURL}/clear`);
+export const addOrRemove = num => postData(`/addOrRemove/`, { id: num });
+export const clear = () => postData(`/clear`);
 
 function postData(url = "", data = {}) {
   return fetch(url, {

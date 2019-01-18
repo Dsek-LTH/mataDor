@@ -6,13 +6,12 @@ Ett litet system för att hålla reda på när man kan hämta sin mat! Tanken ä
 
 - make sure you have node >=8.12 and yarn installed. (npm -g install yarn if you have npm).
 - clone the repository.
-- run `yarn setup`.
+- run `yarn dev`.
 - open http://localhost:3000/ in your favorite browser.
 - adding numbers is available at /admin
 
 ## Default environmental values
 
-| Env-variable        | Default Value                        |
-| :------------------ | :----------------------------------- |
-| MATADOR_PORT        | `3000`                               |
-| MATADOR_BACKEND_URL | `"http://localhost:" + MATADOR_PORT` |
+| Env-variable | Default Value |
+| :----------- | :------------ |
+| MATADOR_PORT | `3001`        |

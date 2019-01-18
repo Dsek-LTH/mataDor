@@ -2,6 +2,7 @@
   "name": "mataDor",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "devDependencies": {
     "react-scripts": "2.0.5",
     "stylelint": "^9.6.0",

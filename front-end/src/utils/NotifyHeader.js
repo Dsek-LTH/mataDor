@@ -116,7 +116,7 @@ class NotificationForm extends React.Component {
     const { foodSetter } = this.props;
     const { input } = this.state;
     return (
-      <form onSubmit={this.onFormSubmit}>
+      <form onSubmit={() => foodSetter(input)}>
         <FormContainer>
           <WaitInput
             type="tel"
@@ -128,11 +128,7 @@ class NotificationForm extends React.Component {
             placeholder="ditt nummer"
             autoFocus
           />
-          <ColoredButton
-            type="button"
-            color="#b4d2ba"
-            onClick={() => foodSetter(input)}
-          >
+          <ColoredButton type="button" color="#b4d2ba">
             notifiera mig!
           </ColoredButton>
         </FormContainer>
