@@ -12,8 +12,13 @@ export default ({ location }) => (
     ) /*Any url with TV in it redirects to tv*/}
     <NumberListFetcher
       render={({ numberList }) => [
-        <NotifyHeader numberList={numberList} />,
-        <NumberContainer numberList={numberList} isAdmin={false} tv={false} />
+        <NotifyHeader key="header" numberList={numberList} />,
+        <NumberContainer
+          key="numberContainer"
+          numberList={numberList}
+          isAdmin={false}
+          tv={false}
+        />
       ]}
     />
   </AppContainer>
