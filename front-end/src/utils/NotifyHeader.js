@@ -117,7 +117,6 @@ class NotificationForm extends React.Component {
     const { input } = this.state;
     e.preventDefault();
     foodSetter(input);
-    console.log(input);
   };
 
   render() {
