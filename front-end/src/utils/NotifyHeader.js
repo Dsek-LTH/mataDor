@@ -34,7 +34,7 @@ class NotifyHeader extends React.Component {
   };
 
   foodSetter = foodNumber => {
-    if (foodNumber.length > 1 && !foodNumber.startsWith("-")) {
+    if (!foodNumber.startsWith("-")) {
       this.setState({ stage: STATES.WAITING, foodNumber });
     }
   };
@@ -112,11 +112,19 @@ class NotificationForm extends React.Component {
 
   handleChange = e => this.setState({ input: e.target.value });
 
-  render() {
+  onSubmit = e => {
     const { foodSetter } = this.props;
     const { input } = this.state;
+    e.preventDefault();
+    foodSetter(input);
+    console.log(input);
+  };
+
+  render() {
+    const { input } = this.state;
+    const { onSubmit, handleChange } = this;
     return (
-      <form onSubmit={() => foodSetter(input)}>
+      <form onSubmit={onSubmit}>
         <FormContainer>
           <WaitInput
             type="tel"
@@ -124,11 +132,11 @@ class NotificationForm extends React.Component {
             inputMode="numeric"
             maxLength={MAX_NUMBER_LENGTH}
             value={input}
-            onChange={this.handleChange}
+            onChange={handleChange}
             placeholder="ditt nummer"
             autoFocus
           />
-          <ColoredButton type="button" color="#b4d2ba">
+          <ColoredButton type="submit" color="#b4d2ba">
             notifiera mig!
           </ColoredButton>
         </FormContainer>
