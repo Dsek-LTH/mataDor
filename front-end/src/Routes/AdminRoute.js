@@ -8,8 +8,12 @@ const AdminRoute = () => (
   <AppContainer>
     <NumberListFetcher
       render={({ numberList }) => [
-        <AdminView numberList={numberList} />,
-        <NumberContainer numberList={numberList} isAdmin />
+        <AdminView key="adminView" numberList={numberList} />,
+        <NumberContainer
+          key="numberContainer"
+          numberList={numberList}
+          isAdmin
+        />
       ]}
     />
   </AppContainer>
