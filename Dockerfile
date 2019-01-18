@@ -13,6 +13,6 @@ RUN yarn build
 WORKDIR /usr/src/app
 
 # Bundle app source
-EXPOSE 3000
+EXPOSE 3001
 CMD [ "yarn", "start" ]
 

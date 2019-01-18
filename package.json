@@ -7,7 +7,7 @@
     "start": "node app.js",
     "setup": "yarn && cd front-end/ && yarn && yarn build && cd .. && node app.js",
     "dev": "concurrently -n 'backend,frontend' 'node app.js' 'cd front-end/ && yarn start'",
-    "dockerize": "docker build -t oskardamkjaer/matador . && docker run -it -v ${PWD}:/usr/src/app -v /usr/src/app/node_modules -p 3000:3000 --rm oskardamkjaer/matador"
+    "dockerize": "docker build -t oskardamkjaer/matador . && docker run -it -v ${PWD}:/usr/src/app -v /usr/src/app/node_modules -p 3001:3001 --rm oskardamkjaer/matador"
   },
   "author": "",
   "license": "ISC",
