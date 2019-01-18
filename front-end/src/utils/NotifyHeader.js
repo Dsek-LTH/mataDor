@@ -126,7 +126,7 @@ class NotificationForm extends React.Component {
             value={input}
             onChange={this.handleChange}
             placeholder="ditt nummer"
-            autofocus
+            autoFocus
           />
           <ColoredButton
             type="button"
