@@ -46,6 +46,9 @@ class NotifyHeader extends React.Component {
       try {
         new Notification("Din mat är klar!");
       } catch (e) {
+        // Some browsers require the service worker to do the notications,
+        // this is a hack i took from stack overflow to make mobile-chrome
+        // work by using the service worker we get from react-scripts build command
         navigator.serviceWorker.register("service-worker.js");
         Notification.requestPermission(function(result) {
           if (result === "granted") {
