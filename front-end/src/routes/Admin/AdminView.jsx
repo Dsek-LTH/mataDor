@@ -77,7 +77,7 @@ export default function ({ numberList }) {
                 area="send"
                 onClick={sendNumber}
                 type="submit">
-                {newNumber ? "add" : "remove"}
+                {newNumber ? "lägg till" : "ta bort"}
             </ColoredButton>
         </AdminForm >
     );
