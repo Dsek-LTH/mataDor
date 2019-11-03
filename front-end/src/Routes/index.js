@@ -1,5 +1,5 @@
-import AdminRoute from "./AdminRoute";
-import TvRoute from "./TvRoute";
-import HomeRoute from "./HomeRoute";
+import Admin from "./Admin";
+import Tv from "./Tv";
+import Home from "./Home";
 
-export { AdminRoute, TvRoute, HomeRoute };
+export { Admin, Tv, Home };
