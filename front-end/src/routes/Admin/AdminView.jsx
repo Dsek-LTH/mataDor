@@ -1,91 +1,84 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { addOrRemove, clear } from "../../api";
 import { AdminForm, FocusInput, ColoredButton } from "../../components/styled";
 
 const MAX_NUMBER_LENGTH = 8;
 const filterNumeric = str => str.replace(/\D/g, "");
 
-class AdminView extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { typed: "" };
-        this.inputRef = React.createRef();
-    }
+export default function ({ numberList }) {
+    const [typed, setTyped] = useState("")
+    const inputEl = useRef(null);
 
-    sendNumber = () => {
-        this.sendNumberWithParam(this.state.typed);
-    };
+    const sendNumber = () => sendNumberWithParam(typed);
 
-    sendNumberWithParam = num => {
+    const sendNumberWithParam = num => {
         if (num.length > 0) {
             addOrRemove(num);
-            this.setState({ typed: "" });
+            setTyped("")
         }
     };
 
-    clearOnEscape = event => {
+    const clearOnEscape = event => {
         if (event.key === "Escape") {
-            this.setState({ typed: "" });
+            setTyped("")
         }
     };
 
-    onFormSubmit = event => {
+    const onFormSubmit = event => {
         event.preventDefault();
-        this.sendNumber();
+        sendNumber();
     };
 
-    focusInput = () => {
+    const focusInput = () => {
         // setTimeout hack necessary to prevent browsers blocking this behaviour
-        setTimeout(() => this.inputRef.current.focus(), 1);
+        // still needed?
+        setTimeout(() => inputEl.current.focus(), 1);
     };
 
-    updateTyped = event => {
-        const typed = filterNumeric(event.target.value).substring(
-            0,
-            MAX_NUMBER_LENGTH
-        );
-        this.setState({ typed });
+    const updateTyped = event => {
+        const typed = filterNumeric(event.target.value)
+            .substring(0, MAX_NUMBER_LENGTH);
+
+        setTyped(typed)
     };
 
-    isNewNumber = number => !this.props.numberList.includes(number);
+    useEffect(() => {
+        focusInput()
+        window.addEventListener("focus", focusInput);
 
-    componentDidMount() {
-        this.focusInput();
-        window.addEventListener("focus", this.focusInput);
-    }
+        return () => {
+            window.removeEventListener("focus", focusInput);
+        }
+    })
 
-    componentWillUnmount() {
-        window.addEventListener("focus", this.focusInput);
-    }
+    const newNumber = !numberList.includes(typed);
+    return (
+        <AdminForm onSubmit={onFormSubmit}>
+            <ColoredButton color="#dbafc1"
+                area="clear"
+                onClick={clear}
+                type="button">
+                rensa
+            </ColoredButton>
 
-    render() {
-        const { typed } = this.state;
-        const newNumber = this.isNewNumber(typed);
-        return (<AdminForm onSubmit={this.onFormSubmit} > < ColoredButton color="#dbafc1"
-            area="clear"
-            onClick={clear}
-            type="button" >
-            rensa
-                </ColoredButton>
-            < FocusInput type="tel"
+            <FocusInput type="tel"
                 pattern="[0-9]*"
                 inputMode="numeric"
                 value={typed}
-                onChange={this.updateTyped}
-                onBlur={this.focusInput}
-                onKeyDown={this.clearOnEscape}
-                ref={this.inputRef}
+                onChange={updateTyped}
+                onBlur={focusInput}
+                onKeyDown={clearOnEscape}
+                ref={inputEl}
                 maxLength={MAX_NUMBER_LENGTH}
-                autoFocus /
-            >
-            < ColoredButton color={newNumber ? "#8ed081" : "#dbafc1"}
+                autoFocus />
+
+            <ColoredButton
+                color={newNumber ? "#8ed081" : "#dbafc1"}
                 area="send"
-                onClick={this.sendNumber}
-                type="submit" > {newNumber ? "add" : "remove"}
+                onClick={sendNumber}
+                type="submit">
+                {newNumber ? "add" : "remove"}
             </ColoredButton>
         </AdminForm >
-        );
-    }
+    );
 }
-
-export default AdminView;
