@@ -9,7 +9,10 @@ export default function() {
       const numberList = JSON.parse(e.data);
       if (numberList) setNumberList(numberList);
     };
-    // TODO avregga här
+    return () => {
+      eventSource.onmessage = null;
+      eventSource.close();
+    };
   }, []);
 
   return numberList;

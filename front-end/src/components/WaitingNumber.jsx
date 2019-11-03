@@ -1,6 +1,6 @@
 import React from "react";
-import { addOrRemove } from "../utils/api.js";
-import { NumberDiv } from "./numberListStyle";
+import { addOrRemove } from "../api"
+import { NumberDiv } from "./styled";
 
 const WaitingNumber = ({ number, isAdmin, tv }) => (
   <NumberDiv tv={tv} onClick={() => isAdmin && addOrRemove(number)}>
