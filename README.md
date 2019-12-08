@@ -1,17 +1,24 @@
 # mataDor
 
-Ett litet system för att hålla reda på när man kan hämta sin mat! Tanken är att hålla det hela enkelt. En jobbare står i baren och när köket ger dem en tallrik mat och tillhörande lapp, skriver denna upp detta i systemet istället för att springa runt. Sedan när någon hämtas så tar personen bort numret. Med denna enkla implementation så är det lätt att hantera när något går fel! :)
+Ett litet system för att hålla reda på när man kan hämta sin mat!
+
+Tanken är att hålla det hela enkelt. En jobbare står i baren och när köket ger dem en tallrik mat och tillhörande lapp, skriver denna upp detta i systemet istället för att springa runt. Sedan när maten hämtas så tar personen bort numret. Med denna enkla implementation så är det lätt att hantera när något går fel! :)
+
+## Notiser
+
+För dig som väntar på din mat kan man nu även få en notis om du klickar på notis-bjällran!
 
 ## Setup (linux && mac)
 
-- make sure you have node >=8.12 and yarn installed. (npm -g install yarn if you have npm).
-- clone the repository.
-- run `yarn dev`.
-- open http://localhost:3000/ in your favorite browser.
-- adding numbers is available at /admin
+- se till att du har node >=8.12 och yarn installerat. (`npm -g install yarn` om du inte har yarn).
+- klona repot
+- kör `yarn`
+- kör `yarn dev`
+- mataDor finns nu på http://localhost:3000/ i din favoritwebbläsare
+- lägg till nummer på /admin
 
-## Default environmental values
+## Standardvariabler
 
 | Env-variable | Default Value |
 | :----------- | :------------ |
-| MATADOR_PORT | `3001`        |
+| PORT         | `3001`        |
