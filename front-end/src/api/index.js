@@ -1,4 +1,6 @@
 export const addOrRemove = num => postData(`/addOrRemove/`, { id: num });
+export const addFood = num => postData(`/add/`, { id: num });
+export const delFood = num => postData(`/del/`, { id: num });
 
 function postData(url = "", data = {}) {
   return fetch(url, {

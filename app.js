@@ -45,6 +45,30 @@ app.post("/addOrRemove", (req, res) => {
   });
 });
 
+app.post("/add", (req, res) => {
+  const id = req.body.id.toString(); // we need this to check length
+
+  if (id.length < 9 && !isNaN(id)) {
+    const operation = addFood(id);
+    return res.json({ message: `food was ${operation}` });
+  }
+  res.status(400).json({
+    message: "Bad Request: id must be 1-8 digit integer."
+  });
+});
+
+app.post("/del", (req, res) => {
+  const id = req.body.id.toString(); // we need this to check length
+
+  if (id.length < 9 && !isNaN(id)) {
+    const operation = delFood(id);
+    return res.json({ message: `food was ${operation}` });
+  }
+  res.status(400).json({
+    message: "Bad Request: id must be 1-8 digit integer."
+  });
+});
+
 app.post("/clear", (req, res) => {
   clearList();
   res.json({ message: "foodlist was cleared" });
@@ -78,5 +102,25 @@ const addOrRemoveFood = num => {
     currentFood = currentFood.filter(item => item !== num);
     sendList();
     return "removed";
+  }
+};
+
+const addFood = num => {
+  if (!currentFood.includes(num)) {
+    currentFood = currentFood.concat(num);
+    sendList();
+    return "added";
+  } else {
+    return "no change";
+  }
+};
+
+const delFood = num => {
+  if (currentFood.includes(num)) {
+    currentFood = currentFood.filter(item => item !== num);
+    sendList();
+    return "removed";
+  } else {
+    return "no change";
   }
 };
