@@ -1,4 +1,7 @@
 import React from "react";
 import { StyledHeader } from "./styled";
 
-export default ({ text, fontSize }) => (<StyledHeader fontSize={fontSize} > {text} </StyledHeader>);
+var CreateHeader = function({ text, fontSize}) {
+	return <StyledHeader fontSize={fontSize} > {text} </StyledHeader>;
+}
+export default CreateHeader;

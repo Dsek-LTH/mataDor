@@ -4,7 +4,7 @@ import { AppContainer } from "../../components/styled";
 import NotifyHeader from "./NotifyHeader";
 import useNumberList from "../../hooks/useNumberList";
 
-export default function () {
+export default function GetIndex() {
     const numberList = useNumberList()
 
     return (

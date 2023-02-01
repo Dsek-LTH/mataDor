@@ -5,7 +5,7 @@ import { AdminForm, FocusInput, ColoredButton } from "../../components/styled";
 const MAX_NUMBER_LENGTH = 8;
 const filterNumeric = str => str.replace(/\D/g, "");
 
-export default function({ numberList }) {
+export default function GetAdminView({ numberList }) {
   const [typed, setTyped] = useState("");
   const inputEl = useRef(null);
 
@@ -74,6 +74,7 @@ export default function({ numberList }) {
         area="send"
         onClick={sendNumber}
         type="submit"
+	fontSize="3em"
       >
         {newNumber ? "lägg till" : "ta bort"}
       </ColoredButton>

@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components";
 import bell from "./bell.svg";
 
@@ -14,8 +14,8 @@ const BellButton = styled.button`
 `;
 
 
-export default function () {
-    const history = useHistory()
+export default function GetBell() {
+    const navigate = useNavigate()
 
     const askForNotifictions = async () => {
         if (!("Notification" in window)) {
@@ -24,7 +24,7 @@ export default function () {
         const permission = await Notification.requestPermission()
         if (permission === "granted") {
             // todo how should we handle the hard coded paths?
-            history.push("/wait/input")
+            navigate("/wait/input")
         }
     };
 

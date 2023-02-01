@@ -4,7 +4,7 @@ import NumberContainer from "../components/NumberContainer";
 import { AppContainer } from "../components/styled";
 import useNumberList from "../hooks/useNumberList";
 
-export default () => {
+var Frontpage = function() {
   const numberList = useNumberList()
 
   return (
@@ -18,3 +18,5 @@ export default () => {
     </AppContainer>
   )
 }
+
+export default Frontpage

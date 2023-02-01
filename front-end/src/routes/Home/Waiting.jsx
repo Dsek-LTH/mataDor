@@ -1,10 +1,10 @@
 import React from "react"
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { NotifyContainer } from "../../components/styled";
 
-export default function ({ numberList }) {
+export default function HandleWaitPage({ numberList }) {
     const { number } = useParams();
-    const history = useHistory()
+    const navigate = useNavigate()
 
     if (numberList.includes(number)) {
         try {
@@ -22,7 +22,7 @@ export default function ({ numberList }) {
                 }
             });
         }
-        history.push(`/wait/done/${number}`)
+        navigate(`/wait/done/${number}`)
     }
 
     return <NotifyContainer>väntar på {number}</NotifyContainer>

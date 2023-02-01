@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ColoredButton, FormContainer, WaitInput } from "../../components/styled";
 
 const MAX_NUMBER_LENGTH = 8;
 
-export default function () {
-    const history = useHistory()
+export default function HandleNotificationForm() {
+    const navigate = useNavigate()
     const [input, setInput] = useState("")
 
     const handleChange = e => setInput(e.target.value);
 
     const onSubmit = e => {
         e.preventDefault();
-        history.push(`/wait/input/${input}`)
+        navigate(`/wait/input/${input}`)
     };
 
     return (

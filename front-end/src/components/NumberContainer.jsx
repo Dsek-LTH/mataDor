@@ -2,7 +2,7 @@ import React from "react";
 import WaitingNumber from "./WaitingNumber";
 import { NumberListContainer } from "./styled";
 
-export default ({ isAdmin, numberList, tv }) => (
+var ReturnNumberContainer = function({ isAdmin, numberList, tv }) { return (
     <NumberListContainer>
         {
             numberList.map(num => (<WaitingNumber
@@ -14,3 +14,6 @@ export default ({ isAdmin, numberList, tv }) => (
         }
     </NumberListContainer>
 )
+}
+
+export default ReturnNumberContainer;

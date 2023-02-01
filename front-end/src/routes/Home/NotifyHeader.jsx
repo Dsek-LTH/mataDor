@@ -1,34 +1,27 @@
 import React from "react";
 import { StyledHeader } from "../../components/styled";
-import { Switch, Route, useRouteMatch } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Bell from "./Bell"
 import NotificationForm from "./NotificationForm"
 import Waiting from "./Waiting"
 import Done from "./Done"
 
-export default function ({ numberList }) {
-  const match = useRouteMatch();
+export default function GetNotifyHeader({ numberList }) {
 
   return (<div>
     <StyledHeader>
       Mat redo för upphämtning
-      <Route exact path={`${match.path}`}>
-        <Bell />
-      </Route>
+      <Routes>
+          <Route path="/" element={<Bell />} />
+      </Routes>
     </StyledHeader >
 
-    <Switch>
-      <Route exact path={`${match.path}/input`}>
-        <NotificationForm />
-      </Route>
+    <Routes>
+      <Route path="/input" element={<NotificationForm />} />
 
-      <Route exact path={`${match.path}/input/:number`}>
-        <Waiting numberList={numberList} />
-      </Route>
+      <Route path="/input/:number" element={<Waiting numberList={numberList} />} />
 
-      <Route exact path={`${match.path}/done/:number`} >
-        <Done />
-      </Route>
-    </Switch>
+      <Route path="/done/:number" element={<Done />} />
+    </Routes>
   </div >)
 }
